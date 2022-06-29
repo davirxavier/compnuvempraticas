@@ -2,10 +2,12 @@ import { AppDataSource } from "./data-source"
 
 import express = require('express');
 import {Answer} from "./entity/Answer";
+import * as cors from 'cors';
 const app = express();
 const router = express.Router();
 
 app.use(express.json());
+app.use(cors({credentials: true, origin: true}))
 
 router.get('/answers', function (req, res, next) {
     console.log('Returning answers');
