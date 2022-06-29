@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Computação em Nuvem Exemplo</title>
+</head>
+<body style="background-color: black; color: white">
+<div style="width: 100vw; display: flex; flex-direction: column; align-items: center; justify-content: center">
+    <iframe height=624 width=816 src="game/index.html"></iframe>
+    <h2>Respostas: </h2>
+    <ul id="listanswers">
+
+    </ul>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</body>
+</html>
+
+<script>
+    function updateAns() {
+        $.ajax({
+            url: "http://34.125.240.3:8080/answers",
+            type: 'GET',
+            dataType: 'json', // added data type
+            success: function(res) {
+                const el = document.getElementById('listanswers');
+                el.innerHTML = '';
+
+                for (const ans of res) {
+                    const newLi = document.createElement('li');
+                    newLi.innerHTML = `${ans.name}`;
+                }
+            }
+        });
+    }
+
+    $(document).ready(function() {
+        updateAns();
+    });
+</script>
