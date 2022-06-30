@@ -32,7 +32,8 @@
 
                 for (const ans of res) {
                     const newLi = document.createElement('li');
-                    newLi.innerHTML = `${ans.name}`;
+                    newLi.innerHTML = `${ans}`;
+                    el.appendChild(newLi);
                 }
             }
         });

@@ -12,7 +12,7 @@ app.use(cors({credentials: true, origin: true}))
 router.get('/answers', function (req, res, next) {
     console.log('Returning answers');
     AppDataSource.manager.find(Answer)
-        .then(found => res.status(200).send(found))
+        .then(found => res.status(200).send(found.map(a => `${a.name} - Acertou ${a.get_right_answer_count()}/5`)))
         .catch(err => res.status(500).send(err));
 });
 
