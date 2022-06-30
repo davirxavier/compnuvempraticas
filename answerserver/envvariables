@@ -1,0 +1,4 @@
+DBHOST=localhost
+DBUSER=postgres
+DBPASS=postgres
+DBNAME=postgres
