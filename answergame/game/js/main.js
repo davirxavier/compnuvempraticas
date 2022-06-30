@@ -158,4 +158,18 @@ class Main {
 const main = new Main();
 main.run();
 
+var postAnswer = () => {
+    const xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("POST", 'http://34.127.69.140:8080/answers', false);
+    xmlHttp.setRequestHeader('Content-Type', 'application/json');
+    xmlHttp.send(JSON.stringify({
+        name: $gameActors.actor(1)._name,
+        compute: $gameVariables.value(1),
+        storage: $gameVariables.value(2),
+        filestore: $gameVariables.value(3),
+        functions: $gameVariables.value(4),
+        monitoring: $gameVariables.value(5)
+    }));
+}
+
 //-----------------------------------------------------------------------------
