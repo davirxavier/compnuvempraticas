@@ -1,0 +1,8 @@
+{
+  "name": "sample-http",
+  "version": "0.0.1",
+  "dependencies": {
+    "magic-bytes.js": "^0.3.0",
+    "@google-cloud/storage": "^4.7.0"
+  }
+}
