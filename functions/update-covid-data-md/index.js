@@ -1,3 +1,5 @@
+const general = require('../general/general');
+
 /**
  * Triggered from a message on a Cloud Pub/Sub topic.
  *
@@ -5,4 +7,5 @@
  * @param {!Object} context Metadata for the event.
  */
 exports.helloPubSub = (event, context) => {
+    console.log('teste')
 };
