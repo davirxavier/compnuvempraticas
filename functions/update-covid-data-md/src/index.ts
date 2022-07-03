@@ -10,8 +10,7 @@ AppDataSource.initialize().then(() => console.log('Initialized DB connection.'))
  * @param {!Object} context Metadata for the event.
  */
 export const helloPubSub = (event, context) => {
-    console.log(typeof event)
-    AppDataSource.manager.find(CountryData).then(res => {
-       console.log(res);
-    });
+    AppDataSource.manager.save(new CountryData(event))
+        .then(() => console.log('Updated country: ' + JSON.stringify(event)))
+        .catch(err => console.error('Error while trying to save country: ', err));
 };
