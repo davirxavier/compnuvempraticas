@@ -1,5 +1,3 @@
-const general = require('../general/general');
-
 /**
  * Triggered from a message on a Cloud Pub/Sub topic.
  *
