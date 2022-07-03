@@ -1,7 +1,7 @@
 import {AppDataSource} from "./data-source";
 import {CountryData} from "./entity/CountryData";
 
-AppDataSource.initialize().then();
+AppDataSource.initialize().then(() => console.log('Initialized DB connection.'));
 
 /**
  * Triggered from a message on a Cloud Pub/Sub topic.
