@@ -1,15 +1,7 @@
 import {AppDataSource} from "./data-source";
 import {CountryData} from "./entity/CountryData";
 
-const init = async () => {
-    if (!AppDataSource.isInitialized) {
-        return AppDataSource.initialize();
-    } else {
-        return Promise.resolve();
-    }
-};
-
-init().then();
+AppDataSource.initialize().then();
 
 /**
  * Triggered from a message on a Cloud Pub/Sub topic.
