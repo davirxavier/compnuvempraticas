@@ -7,5 +7,6 @@ const general = require('./general');
  * @param {!Object} context Metadata for the event.
  */
 exports.helloPubSub = (event, context) => {
-    general.getConnection().then(conn => console.log(conn))
+    console.log(typeof event)
+    console.log(event)
 };
