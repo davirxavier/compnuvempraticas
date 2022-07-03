@@ -1,6 +1,6 @@
 steps:
-  - name: 'pwd'
   - name: 'ls'
+    entrypoint: /bin/sh
   - name: 'gcr.io/cloud-builders/gcloud'
     args: ['functions', 'deploy', 'update-covid-data-middleware-fn', '--trigger-topic=update-covid-data-middleware', '--region=us-west1', '--runtime', 'nodejs16', '--entry-point', 'helloPubSub', '--source=update-covid-data-md']
 
