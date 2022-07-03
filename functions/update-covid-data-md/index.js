@@ -5,5 +5,5 @@
  * @param {!Object} context Metadata for the event.
  */
 exports.helloPubSub = (event, context) => {
-    console.log(event);
+    console.log(typeof event);
 };
