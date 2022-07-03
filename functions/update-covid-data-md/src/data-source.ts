@@ -1,7 +1,6 @@
 import "reflect-metadata"
 import { DataSource } from "typeorm"
 import { CountryData } from "./entity/CountryData"
-require('dotenv').config();
 
 export const AppDataSource = new DataSource({
     type: "postgres",
