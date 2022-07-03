@@ -9,6 +9,8 @@ const init = async () => {
     }
 };
 
+init().then();
+
 /**
  * Triggered from a message on a Cloud Pub/Sub topic.
  *
@@ -17,7 +19,7 @@ const init = async () => {
  */
 export const helloPubSub = (event, context): Promise<any> => {
     console.log(typeof event)
-    return init().then(() => AppDataSource.manager.find(CountryData)).then(res => {
+    return AppDataSource.manager.find(CountryData).then(res => {
        console.log(res);
     });
 };
