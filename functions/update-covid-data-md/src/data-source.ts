@@ -12,7 +12,7 @@ export const AppDataSource = new DataSource({
     database: process.env.DB_NAME || 'postgres',
     synchronize: true,
     logging: false,
-    entities: [CountryData],
+    entities: ['build/entity/*.js'],
     migrations: [],
     subscribers: [],
 })
