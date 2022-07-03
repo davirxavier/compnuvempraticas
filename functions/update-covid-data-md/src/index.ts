@@ -1,6 +1,14 @@
 import {AppDataSource} from "./data-source";
 import {CountryData} from "./entity/CountryData";
 
+const init = async () => {
+    if (!AppDataSource.isInitialized) {
+        return AppDataSource.initialize();
+    } else {
+        return Promise.resolve();
+    }
+};
+
 /**
  * Triggered from a message on a Cloud Pub/Sub topic.
  *
@@ -9,5 +17,7 @@ import {CountryData} from "./entity/CountryData";
  */
 export const helloPubSub = (event, context) => {
     console.log(typeof event)
-    AppDataSource.manager.find(CountryData).then(res => console.log(res));
+    init().then(() => {
+        AppDataSource.manager.find(CountryData).then(res => console.log(res));
+    });
 };
