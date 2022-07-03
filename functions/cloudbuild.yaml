@@ -1,12 +1,12 @@
 steps:
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['functions', 'deploy', 'update-covid-data-middleware-fn', 'update-fns', '--runtime', 'nodejs16', '--entry-point', 'helloPubSub']
+    args: ['functions', 'deploy', 'update-covid-data-middleware-fn', '--runtime', 'nodejs16', '--entry-point', 'helloPubSub']
 
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: [ 'functions', 'deploy', 'update-covid-data-br', 'update-fns', '--runtime', 'nodejs16', '--entry-point', 'helloPubSub' ]
+    args: [ 'functions', 'deploy', 'update-covid-data-br', '--runtime', 'nodejs16', '--entry-point', 'helloPubSub' ]
 
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: [ 'functions', 'deploy', 'update-covid-data-us', 'update-fns', '--runtime', 'nodejs16', '--entry-point', 'helloPubSub' ]
+    args: [ 'functions', 'deploy', 'update-covid-data-us', '--runtime', 'nodejs16', '--entry-point', 'helloPubSub' ]
 
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: [ 'functions', 'deploy', 'update-covid-data-sk', 'update-fns', '--runtime', 'nodejs16', '--entry-point', 'helloPubSub' ]
+    args: [ 'functions', 'deploy', 'update-covid-data-sk', '--runtime', 'nodejs16', '--entry-point', 'helloPubSub' ]
