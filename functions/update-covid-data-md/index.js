@@ -6,5 +6,4 @@
  */
 exports.helloPubSub = (event, context) => {
     console.log(event);
-    console.log(context);
 };
