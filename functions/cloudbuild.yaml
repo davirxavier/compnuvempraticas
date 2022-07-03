@@ -1,14 +1,14 @@
 steps:
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['functions', 'deploy', 'update-covid-data-middleware-fn', '--runtime', 'nodejs16', '--entry-point', 'helloPubSub']
+    args: ['functions', 'deploy', 'update-covid-data-middleware-fn', '--trigger-topic=update-covid-data-middleware', '--runtime', 'nodejs16', '--entry-point', 'helloPubSub']
 
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: [ 'functions', 'deploy', 'update-covid-data-br', '--runtime', 'nodejs16', '--entry-point', 'helloPubSub' ]
+    args: [ 'functions', 'deploy', 'update-covid-data-br', '--trigger-topic=update-covid-data', '--runtime', 'nodejs16', '--entry-point', 'helloPubSub' ]
 
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: [ 'functions', 'deploy', 'update-covid-data-us', '--runtime', 'nodejs16', '--entry-point', 'helloPubSub' ]
+    args: [ 'functions', 'deploy', 'update-covid-data-us', '--trigger-topic=update-covid-data', '--runtime', 'nodejs16', '--entry-point', 'helloPubSub' ]
 
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: [ 'functions', 'deploy', 'update-covid-data-sk', '--runtime', 'nodejs16', '--entry-point', 'helloPubSub' ]
+    args: [ 'functions', 'deploy', 'update-covid-data-sk', '--trigger-topic=update-covid-data', '--runtime', 'nodejs16', '--entry-point', 'helloPubSub' ]
 options:
   logging: CLOUD_LOGGING_ONLY
