@@ -1,4 +1,4 @@
-import {Entity, Column, PrimaryColumn} from "typeorm"
+import {Entity, Column, PrimaryColumn, UpdateDateColumn} from "typeorm"
 
 @Entity()
 export class CountryData {
@@ -16,4 +16,6 @@ export class CountryData {
     @Column()
     deaths: number;
 
+    @UpdateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)", onUpdate: "CURRENT_TIMESTAMP(6)" })
+    public updated_at: Date;
 }
