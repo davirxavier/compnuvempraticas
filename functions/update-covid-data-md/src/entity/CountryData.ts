@@ -5,6 +5,7 @@ export class CountryData {
 
     public constructor(init?:Partial<CountryData>) {
         Object.assign(this, init);
+        this.updated_at = new Date();
     }
 
     @PrimaryColumn()
