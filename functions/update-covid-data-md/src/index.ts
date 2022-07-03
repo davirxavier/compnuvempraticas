@@ -15,9 +15,9 @@ const init = async () => {
  * @param {!Object} event Event payload.
  * @param {!Object} context Metadata for the event.
  */
-export const helloPubSub = (event, context) => {
+export const helloPubSub = (event, context): Promise<any> => {
     console.log(typeof event)
-    init().then(() => {
-        AppDataSource.manager.find(CountryData).then(res => console.log(res));
+    return init().then(() => AppDataSource.manager.find(CountryData)).then(res => {
+       console.log(res);
     });
 };
