@@ -20,7 +20,7 @@ export const helloPubSub = (event, context) => {
     console.log('Received new event: ', ct);
     init().then(() => {
         AppDataSource.manager.save(new CountryData(ct.data.message))
-            .then(() => console.log('Updated country: ' + JSON.stringify(event)))
+            .then((saved) => console.log('Updated country: ' + JSON.stringify(saved)))
             .catch(err => console.error('Error while trying to save country: ', err));
     });
 };
