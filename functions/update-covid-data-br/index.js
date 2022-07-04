@@ -18,21 +18,13 @@ exports.helloPubSub = (event, context) => {
         const totalConfirmed = arr.reduce((prev, curr) => prev + curr.confirmed, 0);
         const totalDeaths = arr.reduce((prev, curr) => prev + curr.deaths, 0);
 
-        const messageObject = {
-            data: {
-                message: {
-                    country: 'BR',
-                    cases: totalConfirmed,
-                    deaths: totalDeaths,
-                    population: population
-                },
-            },
-        };
-
-        const messageBuffer = Buffer.from(JSON.stringify(messageObject), 'utf8');
         try {
-            topic.publish(messageBuffer)
-                .then(() => console.log('Update event sent.'))
+            topic.publish({
+                country: 'BR',
+                cases: totalConfirmed,
+                deaths: totalDeaths,
+                population: population
+            }).then(() => console.log('Update event sent.'))
                 .catch(err => console.error('Error while sending update event: ', err));
         } catch (err) {
             console.error(err);
