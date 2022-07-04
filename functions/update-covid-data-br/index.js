@@ -11,7 +11,11 @@ exports.helloPubSub = (event, context) => {
         let arr = [];
         const results = res.data.results;
         if (results) {
-            arr = results.filter(r => r && r.city == null);
+            results.filter(r => r.city == null).forEach(r => {
+               if (!arr.find(es => es.state == r.state)) {
+                   arr.push(r);
+               }
+            });
         }
 
         const population = arr.reduce((prev, curr) => prev + curr.estimated_population, 0);
