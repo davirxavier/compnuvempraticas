@@ -17,8 +17,8 @@ export class CountryData {
     @Column()
     deaths: number;
 
-    @Column({type: 'bigint'})
-    population: number;
+    @Column({type: 'bigint', default: 0})
+    population?: number = 0;
 
     @UpdateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)", onUpdate: "CURRENT_TIMESTAMP(6)" })
     public updated_at: Date;
