@@ -16,10 +16,10 @@ async function init() {
  * @param {!Object} context Metadata for the event.
  */
 export const helloPubSub = (event, context) => {
-    console.log('Received new event: ', event);
-
+    const ct = JSON.parse(Buffer.from(event.data, 'base64').toString());
+    console.log('Received new event: ', ct);
     init().then(() => {
-        AppDataSource.manager.save(new CountryData(event))
+        AppDataSource.manager.save(new CountryData(ct))
             .then(() => console.log('Updated country: ' + JSON.stringify(event)))
             .catch(err => console.error('Error while trying to save country: ', err));
     });
