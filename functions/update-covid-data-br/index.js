@@ -3,8 +3,7 @@ const pubsub = new PubSub();
 
 const axios = require('axios').default;
 const url = 'https://api.brasil.io/dataset/covid19/caso/data/';
-const token = process.env.API_TOKEN;
-const topic = pubsub.topic('update-covid-data-middleware');
+const token = '51404cfb7eb0f47c7a1aa3b77293bca6b56cefd4';
 
 exports.helloPubSub = (event, context) => {
     axios.get(url, {headers: {'Authorization': 'Token ' + token}}).then(res => {
@@ -27,6 +26,7 @@ exports.helloPubSub = (event, context) => {
             },
         };
 
+        const topic = pubsub.topic('update-covid-data-middleware');
         const messageBuffer = Buffer.from(JSON.stringify(messageObject), 'utf8');
         try {
             topic.publish(messageBuffer)
