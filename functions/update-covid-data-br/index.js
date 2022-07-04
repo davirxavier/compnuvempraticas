@@ -1,5 +1,6 @@
 const {PubSub} = require('@google-cloud/pubsub');
 const pubsub = new PubSub();
+const topic = pubsub.topic('update-covid-data-middleware');
 
 const axios = require('axios').default;
 const url = 'https://api.brasil.io/dataset/covid19/caso/data/';
@@ -13,6 +14,7 @@ exports.helloPubSub = (event, context) => {
             arr = results.filter(r => r && r.city == null);
         }
 
+        const population = arr.reduce((prev, curr) => prev + curr.estimated_population, 0);
         const totalConfirmed = arr.reduce((prev, curr) => prev + curr.confirmed, 0);
         const totalDeaths = arr.reduce((prev, curr) => prev + curr.deaths, 0);
 
@@ -21,12 +23,12 @@ exports.helloPubSub = (event, context) => {
                 message: {
                     country: 'BR',
                     cases: totalConfirmed,
-                    deaths: totalDeaths
+                    deaths: totalDeaths,
+                    population: population
                 },
             },
         };
 
-        const topic = pubsub.topic('update-covid-data-middleware');
         const messageBuffer = Buffer.from(JSON.stringify(messageObject), 'utf8');
         try {
             topic.publish(messageBuffer)
