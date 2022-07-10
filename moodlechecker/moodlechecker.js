@@ -124,4 +124,4 @@ client.on('messageCreate', (mes) => {
     })();
 });
 
-client.login('OTQwNzE1NjUwMTE1MDcyMDIx.GfkGvD.JG8QOPEd8zkg-fiMdm-h_XYkggAlIV_8rcAf8k');
+client.login(process.env.DISCORD_TOKEN);
