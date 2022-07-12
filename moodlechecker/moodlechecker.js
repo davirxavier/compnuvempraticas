@@ -5,6 +5,7 @@ const Conf = require('conf');
 const config = new Conf();
 
 const checkingInterval = parseInt(process.env.CHECKING_INTERVAL) || 20 * 60 * 1000;
+const checkingIntervalVariation = parseInt(process.env.CHECKING_INTERVAL_VARIATION) || 5000;
 
 const messages = {
     up: process.env.UP_MESSAGE || 'Moodle reviveu.',
@@ -20,12 +21,26 @@ const pausedKey = 'isPaused:';
 const channelKey = 'channel_guild:';
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.DIRECT_MESSAGES]});
-let currentInterval = undefined;
+let currentTimeout = undefined;
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 async function startUp() {
     stop();
     await check();
-    currentInterval = setInterval(check, checkingInterval);
+
+    const call = () => {
+        const timeoutTime = checkingInterval > checkingIntervalVariation ? getRandomInt(checkingInterval-checkingIntervalVariation, checkingInterval+checkingIntervalVariation) : checkingInterval;
+        console.log('Scheduling next check in ' + (timeoutTime / 1000) + ' seconds.');
+        currentTimeout = setTimeout(() => {
+            check();
+            call();
+        }, timeoutTime);
+    };
 }
 
 async function check() {
@@ -78,8 +93,8 @@ async function doSendMessage(isUpNow) {
 }
 
 function stop() {
-    if (currentInterval) {
-        clearInterval(currentInterval);
+    if (currentTimeout) {
+        clearTimeout(currentTimeout);
     }
 }
 
