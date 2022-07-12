@@ -41,6 +41,7 @@ async function startUp() {
             call();
         }, timeoutTime);
     };
+    call();
 }
 
 async function check() {
